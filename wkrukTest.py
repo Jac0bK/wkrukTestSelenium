@@ -20,9 +20,6 @@ cityname = fake.city()
 password = fake.password()
 password_check = fake.password()
 
-#password_error_info = "Podane hasła nie są identyczne."
-
-#//ul[@class="errors_for_field"]//li
 
 class RegistrationTests(unittest.TestCase):
     def setUp(self):
@@ -32,6 +29,7 @@ class RegistrationTests(unittest.TestCase):
         self.driver.maximize_window()
         self.wait_10_seconds = WebDriverWait(self.driver, 10)
         self.driver.get("https://wkruk.pl/")
+        # Akceptacja plikow cookie
         cookies = self.driver.find_element(By.ID, "cookiescript_accept")
         cookies.click()
         # Kliknij "Zarejestruj"
@@ -41,6 +39,8 @@ class RegistrationTests(unittest.TestCase):
         sleep(2)
 
     def testWrongPassword(self):
+        # Uzupełnianie formularza rejestracji z różniącymi się hasłami
+
         firstname_input = self.driver.find_element(By.ID, "customer_first_name")
         firstname_input.send_keys(firstname)
         lastname_input = self.driver.find_element(By.ID, "customer_last_name")
@@ -57,9 +57,11 @@ class RegistrationTests(unittest.TestCase):
         city_input.send_keys(cityname)
         email_input = self.driver.find_element(By.ID, "customer_email")
         email_input.send_keys(email)
+        # Podanie hasła w polu "Hasło"
         password_input = self.driver.find_element(By.ID, "customer_password")
         password_input.send_keys(password)
         sleep(3)
+        # Podanie błędnego hasła w polu "Powtórz hasło"
         password_input = self.driver.find_element(By.ID, "customer_password_confirmation")
         password_input.send_keys(password_check)
 
@@ -75,6 +77,7 @@ class RegistrationTests(unittest.TestCase):
 
         sleep(10)
 
+        #Wyświetlenie komunikatu błędu "Podane hasła nie są identyczne"
         wrong_pass_msg = self.driver.find_element(By.XPATH, '//ul[@class="errors_for_field"]//li')
         self.assertEqual("Podane hasła nie są identyczne.", wrong_pass_msg.text)
         print(wrong_pass_msg.text)
