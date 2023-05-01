@@ -1,9 +1,6 @@
 import unittest
-
-import faker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.relative_locator import locate_with
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
@@ -23,7 +20,7 @@ cityname = fake.city()
 password = fake.password()
 password_check = fake.password()
 
-password_error_info = "Podane hasła nie są identyczne."
+#password_error_info = "Podane hasła nie są identyczne."
 
 #//ul[@class="errors_for_field"]//li
 
@@ -40,8 +37,8 @@ class RegistrationTests(unittest.TestCase):
         # Kliknij "Zarejestruj"
         sleep(2)
         self.wait_10_seconds.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="wrapper"]/div[2]/div[2]/div[2]/a[1]'))).click()
-        register = self.driver.find_element(By.XPATH, '//*[@id="wrapper"]/form/p/a').click()
-        sleep(5)
+        self.driver.find_element(By.XPATH, '//*[@id="wrapper"]/form/p/a').click()
+        sleep(2)
 
     def testWrongPassword(self):
         firstname_input = self.driver.find_element(By.ID, "customer_first_name")
@@ -62,17 +59,25 @@ class RegistrationTests(unittest.TestCase):
         email_input.send_keys(email)
         password_input = self.driver.find_element(By.ID, "customer_password")
         password_input.send_keys(password)
-        sleep(10)
+        sleep(3)
         password_input = self.driver.find_element(By.ID, "customer_password_confirmation")
         password_input.send_keys(password_check)
 
         accept_policy = self.driver.find_element(By.XPATH, '//*[@for="customer_agreed"]').click()
+
         sleep(5)
 
         accept_RODO = self.driver.find_element(By.XPATH, '//*[@for="customer_agreed_long"]').click()
+
         sleep(5)
 
         register_btn = self.driver.find_element(By.XPATH, '//button[@class="btn"][@type="submit"]').click()
+
+        sleep(10)
+
+        wrong_pass_msg = self.driver.find_element(By.XPATH, '//ul[@class="errors_for_field"]//li')
+        self.assertEqual("Podane hasła nie są identyczne.", wrong_pass_msg.text)
+        print(wrong_pass_msg.text)
 
         sleep(10)
 

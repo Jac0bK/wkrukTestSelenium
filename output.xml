@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.1 on win32)" generated="20230326 18:25:06.535" rpa="false" schemaversion="3">
+<suite id="s1" name="pythonProject" source="C:\Users\jkost\PycharmProjects\pythonProject">
+<suite id="s1-s1" name="Allegro" source="C:\Users\jkost\PycharmProjects\pythonProject\Allegro.robot">
+<test id="s1-s1-t1" name="Test_1" line="8">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://allegro.pl/ chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230326 18:25:06.825" level="INFO">Opening browser 'firefox' to base url 'https://allegro.pl/ chrome'.</msg>
+<msg timestamp="20230326 18:25:06.828" level="INFO">Firefox driver log is always forced to to: C:\Users\jkost\PycharmProjects\pythonProject\geckodriver-7.log</msg>
+<msg timestamp="20230326 18:25:10.680" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20230326 18:25:10.680" level="FAIL">SessionNotCreatedException: Message: Expected browser binary location, but unable to find binary in default location, no 'moz:firefoxOptions.binary' capability provided, and no binary flag set on the command line
+</msg>
+<status status="FAIL" starttime="20230326 18:25:06.823" endtime="20230326 18:25:10.708"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>/html/body/div[2]/div/div/div/div/div/div/div/div/div/div[3]/header/div[1]/nav/div[5]/button/img[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20230326 18:25:10.708" endtime="20230326 18:25:10.708"/>
+</kw>
+<status status="FAIL" starttime="20230326 18:25:06.823" endtime="20230326 18:25:10.709">SessionNotCreatedException: Message: Expected browser binary location, but unable to find binary in default location, no 'moz:firefoxOptions.binary' capability provided, and no binary flag set on the command line
+</status>
+</test>
+<status status="FAIL" starttime="20230326 18:25:06.574" endtime="20230326 18:25:10.711"/>
+</suite>
+<status status="FAIL" starttime="20230326 18:25:06.538" endtime="20230326 18:25:10.714"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="pythonProject">pythonProject</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Allegro">pythonProject.Allegro</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
